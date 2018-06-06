@@ -37,104 +37,42 @@ sleep 0.3
 echo Applying settings to LITTLE Cluster...
 sleep 0.5
 #Temporarily change permissions to governor files for the LITTLE cluster to enable Interactive governor
-chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-echo interactive > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
+echo interactive > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
+chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
 #Grab Maximum Achievable Frequency for the LITTLE Cluster
 #maxfreq=$(cat "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq")                
 #if test $maxfreq -eq 1593600; then
     #Temporarily change permissions to governor files for the Big cluster to set the maximum frequency to 1593MHz
 #    echo No LITTLE Cluster Overclocking detected. 
 #    echo Applying appropriate values.
-#    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-#    echo 1593600 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq     #Core 0 Maximum Frequency = 1593MHz         
-#    chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-#    echo 1478400 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq #Set overclock max frequency compatible hispeed_freq
+#    chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+#    echo 1593600 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq     #Core 0 Maximum Frequency = 1593MHz         
+#    chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+#    echo 1478400 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq #Set overclock max frequency compatible hispeed_freq
 #elif test $maxfreq -eq 1728000; then
     #Temporarily change permissions to governor files for the Little cluster to set the maximum frequency to 1728MHz
 #    echo LITTLE Cluster Overclocking detected. 
 #    echo Applying appropriate values.
-#    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-#    echo 1728000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq     #Core 0 Maximum Frequency = 1728MHz         
-#    chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-#    echo 1593600 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq #Set normal max frequency hispeed_freq
+#    chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+#    echo 1728000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq     #Core 0 Maximum Frequency = 1728MHz         
+#    chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+#    echo 1593600 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq #Set normal max frequency hispeed_freq
 #else
 #    echo "===================================================="
 #    echo Do not underclock!!! Set the clock speed to max and re-run the script.
 #    echo "===================================================="
 #fi
-chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/*
-echo 80000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
-chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
-echo 83 1824000:95 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
-chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
-echo 20000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
-echo 19000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
-echo 1171200 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 
-echo 90 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
-echo 19000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
-echo 79000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis
-echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif
-echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost
-echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/fast_ramp_down
-echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows
-echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif
-echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
-echo 80000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
-echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
-if [ -e "/sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction" ]; then
-    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction
-    echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction
-fi
-sleep 0.5
-#Apply settings to Big cluster
-echo Applying settings to BIG Cluster
-sleep 0.2
-#Temporarily change permissions to governor files for the BIG cluster to enable Interactive governor
-chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
-echo interactive > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
-chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
-#Grab Maximum Achievable Frequency for the Big Cluster
-#maxfreq=$(cat "/sys/devices/system/cpu/cpu4/cpufreq/cpuinfo_max_freq")                
-#if test $maxfreq -eq 2150400; then
-    #Temporarily change permissions to governor files for the Big cluster to set the maximum frequency to 2150MHz
-#    echo No BIG Cluster Overclocking detected. 
-#    echo Applying appropriate values.
-#    chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
-#    echo 2150400 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq     #Core 2 Maximum Frequency = 2150MHz         
-#    chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
-#    chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
-#    echo 2073600 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 
-#chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
-#Set overclock max frequency compatible target_loads
-#elif test $maxfreq -eq 2265600; then
-    #Temporarily change permissions to governor files for the Big cluster to set the maximum frequency to 2265MHz
-#    echo BIG Cluster Overclocking detected. 
-#    echo Applying appropriate values.
-#    chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
-#    echo 2265600 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq     #Core 2 Maximum Frequency = 2265MHz         
-#    chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
-#    chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
-#    echo 2150400 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 
-#    chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
-#else
-#    echo "===================================================="
-#    echo Do not underclock!!! Set the clock speed to max and re-run the script.
-#    echo "===================================================="
-#Set normal max frequency target_loads
-#fi
-sleep 0.5
-#Tweak Interactive Governor
 chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/interactive/*
 echo 80000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack
 chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
-echo 70 1190400:75 1574400:80 1958400:90 2112000:99 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
+echo 83 1824000:95 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
 chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
 echo 20000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
-echo 10000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
-echo 1574400 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
-echo 80 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
-echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
+echo 19000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+echo 1171200 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 
+echo 90 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
+echo 19000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
 echo 79000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
 echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/ignore_hispeed_on_notif
 echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boost
@@ -144,9 +82,71 @@ echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif
 echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load
 echo 80000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration
 echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
-if [ -e "/sys/devices/system/cpu/cpu4/cpufreq/interactive/enable_prediction" ]; then
+if [ -e "/sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction" ]; then
     chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/interactive/enable_prediction
     echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/enable_prediction
+fi
+sleep 0.5
+#Apply settings to Big cluster
+echo Applying settings to BIG Cluster
+sleep 0.2
+#Temporarily change permissions to governor files for the BIG cluster to enable Interactive governor
+chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo interactive > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+#Grab Maximum Achievable Frequency for the Big Cluster
+#maxfreq=$(cat "/sys/devices/system/cpu/cpu4/cpufreq/cpuinfo_max_freq")                
+#if test $maxfreq -eq 2150400; then
+    #Temporarily change permissions to governor files for the Big cluster to set the maximum frequency to 2150MHz
+#    echo No BIG Cluster Overclocking detected. 
+#    echo Applying appropriate values.
+#    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+#    echo 2150400 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq     #Core 2 Maximum Frequency = 2150MHz         
+#    chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+#    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+#    echo 2073600 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 
+#chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+#Set overclock max frequency compatible target_loads
+#elif test $maxfreq -eq 2265600; then
+    #Temporarily change permissions to governor files for the Big cluster to set the maximum frequency to 2265MHz
+#    echo BIG Cluster Overclocking detected. 
+#    echo Applying appropriate values.
+#    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+#    echo 2265600 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq     #Core 2 Maximum Frequency = 2265MHz         
+#    chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+#    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+#    echo 2150400 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 
+#    chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+#else
+#    echo "===================================================="
+#    echo Do not underclock!!! Set the clock speed to max and re-run the script.
+#    echo "===================================================="
+#Set normal max frequency target_loads
+#fi
+sleep 0.5
+#Tweak Interactive Governor
+chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/*
+echo 80000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
+chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+echo 70 1190400:75 1574400:80 1958400:90 2112000:99 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+echo 20000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
+echo 10000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
+echo 1574400 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+echo 80 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
+echo 40000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
+echo 79000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis
+echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/fast_ramp_down
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows
+echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif
+echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
+echo 80000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
+if [ -e "/sys/devices/system/cpu/cpu4/cpufreq/interactive/enable_prediction" ]; then
+    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction
+    echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction
 fi
 sleep 0.2
 echo "=========================================="
@@ -225,43 +225,17 @@ if grep -q 'ro.build.version.sdk=27' /system/build.prop; then
 	echo Android Oreo 8.1.0 detected!
 	sleep 0.3
 	Applying minor adjustments!
-chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-echo interactive > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/*
-echo 80000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
-chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
-echo 60 1555200:70 1824000:95 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
-chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
-echo 20000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
-echo 59000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
-echo 1555200 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 
-echo 80 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
-echo 60000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
-echo 79000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis
-echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif
-echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost
-echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/fast_ramp_down
-echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows
-echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif
-echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
-echo 80000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
-echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
-if [ -e "/sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction" ]; then
-    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction
-    echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction
-fi
 chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
 echo interactive > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
 chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
 chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/interactive/*
 echo 80000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack
 chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
-echo 40 902400:50 1190400:60 1267200:65 1574400:70 1958400:95 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
+echo 60 1555200:70 1824000:95 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
 chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
 echo 20000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
-echo 60000 1958400:30000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
-echo 1574400 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
+echo 59000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+echo 1555200 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 
 echo 80 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
 echo 60000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
 echo 79000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
@@ -273,9 +247,35 @@ echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif
 echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load
 echo 80000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration
 echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
-if [ -e "/sys/devices/system/cpu/cpu4/cpufreq/interactive/enable_prediction" ]; then
+if [ -e "/sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction" ]; then
     chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/interactive/enable_prediction
     echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/enable_prediction
+fi
+chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo interactive > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/*
+echo 80000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
+chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+echo 40 902400:50 1190400:60 1267200:65 1574400:70 1958400:95 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+echo 20000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
+echo 60000 1958400:30000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
+echo 1574400 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+echo 80 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
+echo 60000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
+echo 79000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis
+echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/fast_ramp_down
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows
+echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif
+echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
+echo 80000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
+if [ -e "/sys/devices/system/cpu/cpu4/cpufreq/interactive/enable_prediction" ]; then
+    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction
+    echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction
 fi
 chmod 644 /sys/module/cpu_boost/parameters/input_boost_freq
 echo 0:1555200 1:0 2:0 3:0 4:806400 5:0 6:0 7:0 > /sys/module/cpu_boost/parameters/input_boost_freq

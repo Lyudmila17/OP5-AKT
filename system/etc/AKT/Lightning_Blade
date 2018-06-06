@@ -1,26 +1,73 @@
-/sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack 480000
-/sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 60000
-/sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads 80 403000:68 806000:99
-/sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 0
-/sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 998000
-/sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 91
-/sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay 0
-/sys/devices/system/cpu/cpu4/cpufreq/interactive/align_windows 1
-/sys/devices/system/cpu/cpu4/cpufreq/interactive/boost 0
-/sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration 0
-/sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 0
-/sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif 1
-/sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load 0
-/sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack 480000
-/sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 60000
-/sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads 70 960000:78  1344000:99
-/sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 0
-/sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 960000
-/sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 91
-/sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 0
-/sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows 1
-/sys/devices/system/cpu/cpu0/cpufreq/interactive/boost 0
-/sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration 0
-/sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 0
-/sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
-/sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 0
+#!/system/bin/sh
+#Author: Swapney Raul
+#Settings By: Swapney Raul
+#Device: athene
+#Codename: Lightning Blade
+#Build Status: Stable
+#Version: 1.6
+#Ported by: Lyudmila17
+
+echo ""
+echo -----------------------------------------------
+echo Applying 'Lightning Blade 1.6 (balanced profile)'
+echo -----------------------------------------------
+sleep 0.5
+echo "Device: athene"
+echo Stable
+echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+sleep 0.3
+
+echo Applying settings to LITTLE Cluster...
+sleep 0.5
+#Temporarily change permissions to governor files for the LITTLE cluster to enable Interactive governor
+chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo interactive > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor            
+
+chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/*
+
+echo 480000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack 
+echo 60000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
+echo 70 960000:78 1344000:99 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads 
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 0
+echo 960000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 
+echo 91 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
+echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis
+echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
+
+echo Applying settings to BIG Cluster
+sleep 0.2
+#Temporarily change permissions to governor files for the BIG cluster to enable Interactive governor
+chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
+echo interactive > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
+chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
+
+echo 480000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack
+echo 60000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 
+echo 80 403000:68 806000:99 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads 
+echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
+echo 998000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 
+echo 91 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
+echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/align_windows
+echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boost
+echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration
+echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
+echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif
+echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load
+
+sleep 1
+echo ------------------------------------------------------------
+echo 'Lighting Blade 1.6' Successfully Applied!
+echo "Lighting Blade 1.6" > /data/system/current_profile
+echo   You may now tweak them further
+echo    using EXKM or Kernel Adiutor
+echo ------------------------------------------------------------
+echo ""
+echo " Done,  press ENTER then close"
+sleep 4

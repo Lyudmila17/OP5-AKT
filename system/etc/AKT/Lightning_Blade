@@ -63,8 +63,8 @@ echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load
 
 sleep 1
 echo ------------------------------------------------------------
-echo 'Lighting Blade 1.6' Successfully Applied!
-echo "Lighting Blade 1.6" > /data/system/current_profile
+echo 'Lightning Blade 1.6' Successfully Applied!
+echo "Lightning Blade 1.6" > /data/system/current_profile
 echo   You may now tweak them further
 echo    using EXKM or Kernel Adiutor
 echo ------------------------------------------------------------

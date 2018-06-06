@@ -1,0 +1,26 @@
+/sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack 480000
+/sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 60000
+/sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads 80 403000:68 806000:99
+/sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 0
+/sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 998000
+/sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 91
+/sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay 0
+/sys/devices/system/cpu/cpu4/cpufreq/interactive/align_windows 1
+/sys/devices/system/cpu/cpu4/cpufreq/interactive/boost 0
+/sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration 0
+/sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 0
+/sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif 1
+/sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load 0
+/sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack 480000
+/sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 60000
+/sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads 70 960000:78  1344000:99
+/sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 0
+/sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 960000
+/sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 91
+/sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 0
+/sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows 1
+/sys/devices/system/cpu/cpu0/cpufreq/interactive/boost 0
+/sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration 0
+/sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 0
+/sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
+/sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 0

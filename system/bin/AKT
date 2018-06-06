@@ -400,8 +400,9 @@ function BalancedAthene
 		echo -e "\e[01;92m 6.) Project by Zhana Balanced by @Asiier \e[00;37m"
 		echo -e "\e[01;92m 7.) Project by X.A.N.A Balanced by @Asiier \e[00;37m"
 		echo -e "\e[01;90m 8.) Soilwork_balanced by @rogerf81 \e[00;37m"
+		echo -e "\e[01;90m 9.) Lightning Blade by @Swapney Raul \e[00;37m"
 		echo ""
-		echo -e "\e[01;94m 9.) Main menu \e[00;37m"
+		echo -e "\e[01;94m 10.) Main menu \e[00;37m"
 		echo ""
 		echo $divider
 		echo ""
@@ -586,7 +587,30 @@ function BalancedAthene
  sleep 10
  sleep 5; main_menu_athene;
  exit;;
- 9 ) clear; main_menu_athene;;
+9 ) #Lightning_Blade
+ $BB mount -o remount,rw /system 2>/dev/null
+ mount -o remount,rw /system 2>/dev/null
+ if [ -e "/system/su.d/99AKT" ]; then
+ 	grep -v "sleep" /system/etc/AKT/Lightning_Blade > /system/etc/AKT/Temp && mv /system/etc/AKT/Temp /system/su.d/99AKT
+ 	chmod 700 /system/su.d/99AKT
+ fi
+ if [ -e "/system/etc/init.d/99AKT" ]; then
+ 	grep -v "sleep" /system/etc/AKT/Lightning_Blade > /system/etc/AKT/Temp && mv /system/etc/AKT/Temp /system/su.d/99AKT
+ 	chmod 777 /system/etc/init.d/99AKT
+ fi
+ if [ -e "/storage/emulated/0/AKT/AKT" ]; then
+ 	grep -v "sleep" /system/etc/AKT/Lightning_Blade > /system/etc/AKT/Temp && mv /system/etc/AKT/Temp /storage/emulated/0/AKT/AKT
+ fi
+ chmod 777 /system/etc/AKT/Lightning_Blade
+ clear
+ sh /system/etc/AKT/Lightning_Blade
+ clear
+ echo " Installation finished... "
+ echo " For additional information and questions, please visit our XDA thread"
+ sleep 10
+ sleep 5; main_menu_athene;
+ exit;;
+ 10 ) clear; main_menu_athene;;
  * ) echo " Please, enter a valid option..."
  sleep 2
  clear;;

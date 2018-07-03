@@ -91,9 +91,7 @@ sleep 0.5
 echo Applying settings to BIG Cluster
 sleep 0.2
 #Temporarily change permissions to governor files for the BIG cluster to enable Interactive governor
-chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-echo interactive > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+
 #Grab Maximum Achievable Frequency for the Big Cluster
 #maxfreq=$(cat "/sys/devices/system/cpu/cpu4/cpufreq/cpuinfo_max_freq")                
 #if test $maxfreq -eq 2150400; then
@@ -251,9 +249,7 @@ if [ -e "/sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction" ]; 
     chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/interactive/enable_prediction
     echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/enable_prediction
 fi
-chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-echo interactive > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+
 chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/*
 echo 80000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
 chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads

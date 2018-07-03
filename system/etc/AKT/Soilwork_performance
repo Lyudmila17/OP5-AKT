@@ -181,29 +181,7 @@ if [ -d /sys/devices/system/cpu/cpufreq/policy0 ]; then
 			if [ -e "/sys/devices/system/cpu/cpu0/cpufreq/interactive/powersave_bias" ]; then
 				echo 1 > $LGP/interactive/powersave_bias
 			fi
-			if grep 'blu_active' $AGL; then
-				if [ -e $AGL ]; then
-					echo "	+Applying & tuning blu_active" >> $DLL
-					echo blu_active > $LGP/scaling_governor
-					sleep 1
-					chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/blu_active/*
-					chmod 644 $LGP/blu_active/*
-					echo 70 672000:76 883200:78 1401600:81 > $LGP/blu_active/target_loads
-					chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/blu_active/target_loads
-					echo 90000 > $LGP/blu_active/timer_slack
-					chmod 644 $LGP/blu_active/timer_rate
-					echo 15000 > $LGP/blu_active/timer_rate
-					echo 1401600 > $LGP/blu_active/hispeed_freq
-					echo 0 672000:10000 883200:25000 1401600:50000 > $LGP/blu_active/above_hispeed_delay
-					echo 400 > $LGP/blu_active/go_hispeed_load
-					echo 10000 > $LGP/blu_active/min_sample_time
-					echo 1 > $LGP/blu_active/fastlane
-					echo 30 > $LGP/blu_active/fastlane_threshold
-					chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/blu_active/*
-					chmod 444 $LGP/blu_active/*
-				fi
-				echo "	+Tuning finished for blu_active" >> $DLL
-			else
+
 				if [ -e $AGL ]; then
 					echo "	+Applying & tuning interactive" >> $DLL
 					echo interactive > $LGP/scaling_governor
@@ -270,29 +248,6 @@ if [ -d /sys/devices/system/cpu/cpufreq/policy4 ]; then
 			chmod 444 $BGP/schedutil/*
 		fi
 		echo "	+Tuning finished for schedutil" >> $DLL
-	elif grep 'blu_active' $AGB; then
-		if [ -e $AGB ]; then
-			echo "	Applying & tuning blu_active" >> $DLL
-			echo blu_active > $BGP/scaling_governor
-			sleep 1
-			chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/blu_active/*
-			chmod 644 $BGP/blu_active/*
-			echo 70 652800:76 902400:78 1132800:81 2208000:85 > $BGP/blu_active/target_loads
-			chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/blu_active/target_loads
-			echo 90000 > $BGP/blu_active/timer_slack
-			echo 2361600 > $BGP/blu_active/hispeed_freq
-			chmod 644 $BGP/blu_active/timer_rate
-			echo 15000 > $BGP/blu_active/timer_rate
-			echo 0 1132800:50000 2208000:80000 > $BGP/blu_active/above_hispeed_delay
-			echo 350 > $BGP/blu_active/go_hispeed_load
-			echo 25000 > $BGP/blu_active/min_sample_time
-			echo 0 > $BGP/blu_active/align_windows
-			echo 1 > $BGP/blu_active/fastlane
-			echo 35 > $BGP/blu_active/fastlane_threshold
-			chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/blu_active/*
-			chmod 444 $BGP/blu_active/*
-			echo "	+Tuning finished for blu_active" >> $DLL
-		fi
 	elif grep 'interactive' $AGB; then
 		if [ -e $AGB ]; then
 			echo "	Applying & tuning interactive" >> $DLL

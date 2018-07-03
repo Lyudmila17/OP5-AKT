@@ -18,9 +18,7 @@ sleep 0.3
 echo Applying settings to BIG Cluster...
 sleep 0.5
 
-chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-echo interactive > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+
 
 echo 80000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
 echo 85 729600:75 960000:80 1094400:85 1267200:90 1440000:95 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
